@@ -99,9 +99,6 @@ Kaggle Notebook·Google Colab에서는 `run_on_kaggle_colab.ipynb`를 위에서�
 | 검바위 시험 기간 [6] | 추정 시험일 9일의 12·11·13시 과거 증가 × 0.6, 반복 패턴 15·16시 +100명 | 학습 자료에서 평일 4~5일 연속 12시 3~5배 블록 5개 발견, 2025·2026년 4월 블록이 364일 간격으로 일치 → 2025년 7·10월 블록을 364일 옮겨 날짜 추정. 배율 0.6은 제출 전에 정한 보수 계수 (`code/geombawi_nayun/`) |
 | 시험 후 뺀 보정 | 부천FC 종료 시간대, 토요일 오후 등 | 검증 근거로 만든 값을 한 번 제출해 Public이 나빠져 통째로 뺌. 계수를 바꿔 다시 제출하지 않음 |
 
-### Public 점수 사용 범위
-완성된 후보 중 제출할 것 고르기, 완성된 제출들의 섞기 비율 계산([1]), 시험해 본 보정을 남길지 뺄지 결정에만 썼다. 개별 모델 학습·피처 선택·후처리 계수 값에는 쓰지 않았다. 전체 수준을 올려 Public 반응을 본 탐색 제출(`X3_ev_hol_p015` 등)은 최종 경로에 쓰이지 않았다 (섞기 원본이 json 비율 그대로이고 상수 이동이 없음을 확인).
-
 ## 4. 개별 모델 (섞기 입력 8개)
 
 | 모델 | 담당 | 저장 예측 (`SINCON_2026_요모조모_kdbwls/artifacts/models/`) | 다시 만드는 코드 |
@@ -168,8 +165,8 @@ Kaggle Notebook·Google Colab에서는 `run_on_kaggle_colab.ipynb`를 위에서�
 `run_on_kaggle_colab.ipynb`: 저장소 받기 → 패키지 확인(없는 것만 설치) → 대회 원본 배치 → `run_all.py` → 결과 확인. Kaggle은 대회 데이터를 노트북에 추가하면 `/kaggle/input/`에서 원본을 자동으로 찾고, Colab은 원본 4개를 `/content/raw/`에 올린다. `RETRAIN_CPU=True`로 바꾸면 kdbwls 모델 재학습까지 한다. GPU 불필요, 메모리 4GB 이하.
 
 ## 8. 기존 개발 기록
-- `SINCON_2026_요모조모_kdbwls/records/`: 실행 로그(`run_log.txt`, `run_log_retrain.txt`, `run_log_py310.txt`), 피처 버전별 검증 결과(`results_v*.json`), 실험 기록 목록과 Public 점수 이력(`EXPERIMENT_LOG.md`)
-- `SINCON_최종제출_nayun/outputs/SCORES.md` (후보별 근거와 Public 점수), `docs/README_작업로그.md`, `docs/규칙_점검_2026-11-13.md`
+- `SINCON_2026_요모조모_kdbwls/records/`: 실행 로그(`run_log.txt`, `run_log_retrain.txt`, `run_log_py310.txt`), 피처 버전별 검증 결과(`results_v*.json`), 실험 기록 목록(`EXPERIMENT_LOG.md`)
+- `SINCON_최종제출_nayun/docs/README_작업로그.md`, `docs/규칙_점검_2026-11-13.md`
 - Kaggle 노트북 「2026 SINCON v6」 Version 1
 
 ## 9. 제출 전 자체 점검
