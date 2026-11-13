@@ -1,0 +1,183 @@
+{
+ "features": [
+  "station_id",
+  "hour",
+  "line",
+  "multi_line",
+  "days_since_open",
+  "time_idx",
+  "is_transfer",
+  "is_ext_transfer",
+  "is_univ_station",
+  "dow",
+  "is_holiday",
+  "is_major_holiday",
+  "is_offday",
+  "offday_run_len",
+  "is_bridge",
+  "before_long_offday",
+  "after_long_offday",
+  "holiday_type",
+  "is_parents_day",
+  "seasonal_period_code",
+  "univ_semester",
+  "vac_elem",
+  "vac_middle",
+  "vac_high",
+  "vac_all",
+  "precip_day_mm",
+  "temp_max_c",
+  "temp_min_c",
+  "snow_day_cm",
+  "precip_service_mm",
+  "gumdan_pop_adj",
+  "month",
+  "precip_mm",
+  "precip_3h_mm",
+  "temp_c",
+  "humidity",
+  "cloud_pct",
+  "radiation",
+  "event_any",
+  "event_start_hour",
+  "event_end_hour",
+  "event_type",
+  "hours_from_event",
+  "hours_from_end",
+  "adj_event_type",
+  "adj_event_any",
+  "adj_hours_from_end",
+  "daytype",
+  "te_st_dt_h",
+  "te_st_off_h",
+  "te_st_h",
+  "te_st",
+  "alight_ratio"
+ ],
+ "grid": [
+  {
+   "params": {
+    "num_leaves": 127,
+    "min_data_in_leaf": 200,
+    "lambda_l2": 5.0
+   },
+   "rmsle": 0.18141484549203363,
+   "folds": [
+    0.19477600735914974,
+    0.1680536836249175
+   ],
+   "iters": [
+    1434,
+    1036
+   ]
+  },
+  {
+   "params": {
+    "num_leaves": 255,
+    "min_data_in_leaf": 200,
+    "lambda_l2": 5.0
+   },
+   "rmsle": 0.1822662615021402,
+   "folds": [
+    0.194496004249449,
+    0.1700365187548314
+   ],
+   "iters": [
+    1047,
+    595
+   ]
+  },
+  {
+   "params": {
+    "num_leaves": 511,
+    "min_data_in_leaf": 200,
+    "lambda_l2": 10.0
+   },
+   "rmsle": 0.1811194498220355,
+   "folds": [
+    0.1923573602917352,
+    0.16988153935233583
+   ],
+   "iters": [
+    1149,
+    578
+   ]
+  }
+ ],
+ "best_params": {
+  "objective": "regression",
+  "learning_rate": 0.05,
+  "feature_fraction": 0.8,
+  "bagging_fraction": 0.8,
+  "bagging_freq": 1,
+  "seed": 42,
+  "verbose": -1,
+  "num_threads": 0,
+  "num_leaves": 511,
+  "min_data_in_leaf": 200,
+  "lambda_l2": 10.0
+ },
+ "n_rounds": 949,
+ "blend": [
+  {
+   "w": 0.0,
+   "rmsle": 0.1811194498220355,
+   "folds": [
+    0.1923573602917352,
+    0.16988153935233583
+   ]
+  },
+  {
+   "w": 0.1,
+   "rmsle": 0.18178861973558097,
+   "folds": [
+    0.19291710664684375,
+    0.17066013282431816
+   ]
+  },
+  {
+   "w": 0.2,
+   "rmsle": 0.18368910841700015,
+   "folds": [
+    0.19452757265301132,
+    0.17285064418098894
+   ]
+  },
+  {
+   "w": 0.3,
+   "rmsle": 0.18678174746523188,
+   "folds": [
+    0.1971630125410269,
+    0.17640048238943687
+   ]
+  },
+  {
+   "w": 0.4,
+   "rmsle": 0.1910064285721023,
+   "folds": [
+    0.20078306953757674,
+    0.18122978760662783
+   ]
+  }
+ ],
+ "blend_weight": 0.0,
+ "cv_rmsle": 0.18078572211582036,
+ "top_features": {
+  "te_st_dt_h": 3583342.0,
+  "te_st_off_h": 1716451.0,
+  "te_st": 134560.0,
+  "te_st_h": 123589.0,
+  "alight_ratio": 87392.0,
+  "station_id": 32677.0,
+  "radiation": 30531.0,
+  "daytype": 19151.0,
+  "time_idx": 14435.0,
+  "hours_from_event": 12957.0,
+  "is_offday": 11810.0,
+  "dow": 10740.0,
+  "hour": 8978.0,
+  "hours_from_end": 7548.0,
+  "event_end_hour": 7210.0
+ },
+ "seconds": 1686
+}

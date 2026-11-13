@@ -1,0 +1,33 @@
+Python 3.13.18 | pandas 3.0.5 | numpy 2.5.3
+원본 SHA-256 확인, 작업 폴더 준비 완료
+
+[2] 섞기 원본 OPT5_raw: 저장본 사용 (Public 점수 C 행렬로 계산한 log 가중 평균, README 5절)
+
+[3] 후처리 full_pp (축제 → 명절 0.5 → 공연장·인접역+OKF → 검단 0.5 → SSG 종료)
+$ python scripts/full_pp.py OPT5_raw.csv OPT5_pp.csv
+저장 OPT5_pp.csv
+  (4초)
+  비교 OPT5_pp.csv vs artifacts/blend_chain/OPT5_pp.csv: 최대 log 차이 0.00e+00 OK
+
+[4] 팀 섞기 0.5/0.5 (log1p 공간)
+  비교 OPT5pp_team50.csv vs artifacts/blend_chain/OPT5pp_team50.csv: 최대 log 차이 0.00e+00 OK
+
+[5] SSG·OKF 보정 세기 복원: 저장본 사용 (README 5절)
+
+[6] 취소 행사 반영 (OKF 9/26~27, GHOSTIVAL 10/24~25)
+$ python scripts/cancel_adjust.py OPT5pp_team50_fix.csv OPT5pp_team50_fix_cancel.csv 1.0
+저장 OPT5pp_team50_fix_cancel.csv
+  (1초)
+  비교 OPT5pp_team50_fix_cancel.csv vs artifacts/blend_chain/OPT5pp_team50_fix_cancel.csv: 최대 log 차이 0.00e+00 OK
+
+[7] 검바위(3208) 시험 기간 보정 (nayun 코드)
+$ python code/exam_adjust.py OPT5pp_team50_fix_cancel.csv step_exam.csv 0.6
+보정 행 9, 저장 step_exam.csv
+  (1초)
+$ python code/geombawi_adjust.py step_exam.csv final_A.csv hours h1516
+보정 행 34, 저장 final_A.csv
+  (2초)
+  비교 final_A.csv vs predictions/final_A_fixcancel_geombawi.csv: 최대 log 차이 8.88e-16 OK
+  형식 OK: final_A.csv (157,194행, ID 일치, 결측·음수·무한대 없음)
+
+재현 성공

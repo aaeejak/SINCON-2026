@@ -1,0 +1,26 @@
+{
+ "F_v10_stack": {
+  "비율": 0.40457,
+  "파일": "cand_F_v10_stack.csv (nayun)"
+ },
+ "new_v5data": {
+  "비율": 0.165885,
+  "파일": "submission_v5data_kfold5x3_lgbmB0.1_cat0.1_growth.csv"
+ },
+ "nayun_v3": {
+  "비율": 0.085226,
+  "파일": "submission_lgbm.csv (nayun)"
+ },
+ "dh_v2": {
+  "비율": 0.110319,
+  "파일": "submission_v2.csv (도형 train.py)"
+ },
+ "dh_mlp": {
+  "비율": 0.094058,
+  "파일": "submission_mlp_ensemble.csv (도형 train_mlp_ensemble.py)"
+ },
+ "v7": {
+  "비율": 0.139626,
+  "파일": "submission_v7_monthly.csv (우리)"
+ }
+}

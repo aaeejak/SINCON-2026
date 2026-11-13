@@ -1,0 +1,10 @@
+# 실행: python src/run_final.py  (2026-11-13T11:08:52Z UTC, Linux, Python 3.10.12, pandas 2.3.3, numpy 2.2.6)
+보정 행 47, 저장 /sessions/rcw-01srejez8vfkxsecd6dhwrdh/repro_nayun/step1_fc.csv
+저장 /sessions/rcw-01srejez8vfkxsecd6dhwrdh/repro_nayun/final_submission_2.csv
+보정 행 1720, 저장 /sessions/rcw-01srejez8vfkxsecd6dhwrdh/repro_nayun/final_submission.csv
+> src/fc_adjust.py team_inputs/input_team_gb_v6_orig.csv /sessions/rcw-01srejez8vfkxsecd6dhwrdh/repro_nayun/step1_fc.csv 0.7
+> src/misc_adjust.py /sessions/rcw-01srejez8vfkxsecd6dhwrdh/repro_nayun/step1_fc.csv /sessions/rcw-01srejez8vfkxsecd6dhwrdh/repro_nayun/final_submission_2.csv ftuned v3swap
+> src/exam_all_adjust.py /sessions/rcw-01srejez8vfkxsecd6dhwrdh/repro_nayun/final_submission_2.csv /sessions/rcw-01srejez8vfkxsecd6dhwrdh/repro_nayun/final_submission.csv 0.466 0 7
+final_submission.csv: 형식 OK, FINAL과 최대 차이 9.094947017729282e-13
+final_submission_2.csv: 형식 OK, FINAL과 최대 차이 9.094947017729282e-13
+재현 성공

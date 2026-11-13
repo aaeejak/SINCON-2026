@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+work/
+outputs/repro/
+push_to_github.bat
+# 대회 제공 자료는 올리지 않음 (setup_raw_data.py로 배치)
+**/data/raw/*.csv
+SINCON_2026_요모조모_Dohyeong/code/dh_models/sincon-2026/
+
+# CSV 파일은 GitHub에 올리지 않음 (예측·중간 산출물·외부 자료 CSV는 제출 ZIP SINCON_2026_요모조모.zip에 포함)
+*.csv

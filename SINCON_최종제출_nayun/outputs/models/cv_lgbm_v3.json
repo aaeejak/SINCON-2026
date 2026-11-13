@@ -1,0 +1,220 @@
+{
+ "features": [
+  "station_id",
+  "hour",
+  "line",
+  "multi_line",
+  "days_since_open",
+  "time_idx",
+  "dow",
+  "is_holiday",
+  "is_major_holiday",
+  "is_offday",
+  "offday_run_len",
+  "is_bridge",
+  "before_long_offday",
+  "after_long_offday",
+  "holiday_type",
+  "is_parents_day",
+  "seasonal_period_code",
+  "univ_semester",
+  "vac_elem",
+  "vac_middle",
+  "vac_high",
+  "vac_all",
+  "precip_day_mm",
+  "temp_max_c",
+  "temp_min_c",
+  "snow_day_cm",
+  "precip_service_mm",
+  "gumdan_pop_adj",
+  "month",
+  "precip_mm",
+  "precip_3h_mm",
+  "temp_c",
+  "event_any",
+  "event_start_hour",
+  "event_type",
+  "hours_from_event",
+  "daytype",
+  "te_st_dt_h",
+  "te_st_off_h",
+  "te_st_h",
+  "te_st",
+  "alight_ratio"
+ ],
+ "grid": [
+  {
+   "params": {
+    "num_leaves": 63,
+    "min_data_in_leaf": 50,
+    "lambda_l2": 0.0
+   },
+   "rmsle": 0.1861408897260777,
+   "folds": [
+    0.20122786881256843,
+    0.17105391063958697
+   ],
+   "iters": [
+    887,
+    1322
+   ]
+  },
+  {
+   "params": {
+    "num_leaves": 127,
+    "min_data_in_leaf": 50,
+    "lambda_l2": 0.0
+   },
+   "rmsle": 0.18747835428926657,
+   "folds": [
+    0.20345489396333463,
+    0.17150181461519848
+   ],
+   "iters": [
+    940,
+    975
+   ]
+  },
+  {
+   "params": {
+    "num_leaves": 255,
+    "min_data_in_leaf": 50,
+    "lambda_l2": 0.0
+   },
+   "rmsle": 0.18888242505811179,
+   "folds": [
+    0.2048684695583824,
+    0.17289638055784118
+   ],
+   "iters": [
+    512,
+    526
+   ]
+  },
+  {
+   "params": {
+    "num_leaves": 127,
+    "min_data_in_leaf": 200,
+    "lambda_l2": 5.0
+   },
+   "rmsle": 0.18561916727854547,
+   "folds": [
+    0.19967886318919964,
+    0.1715594713678913
+   ],
+   "iters": [
+    1027,
+    1133
+   ]
+  },
+  {
+   "params": {
+    "num_leaves": 255,
+    "min_data_in_leaf": 200,
+    "lambda_l2": 5.0
+   },
+   "rmsle": 0.1854795517950132,
+   "folds": [
+    0.19866844785858512,
+    0.17229065573144128
+   ],
+   "iters": [
+    955,
+    1030
+   ]
+  },
+  {
+   "params": {
+    "num_leaves": 511,
+    "min_data_in_leaf": 200,
+    "lambda_l2": 10.0
+   },
+   "rmsle": 0.1864000358395843,
+   "folds": [
+    0.19876316915554343,
+    0.1740369025236252
+   ],
+   "iters": [
+    852,
+    526
+   ]
+  }
+ ],
+ "best_params": {
+  "objective": "regression",
+  "learning_rate": 0.05,
+  "feature_fraction": 0.8,
+  "bagging_fraction": 0.8,
+  "bagging_freq": 1,
+  "seed": 42,
+  "verbose": -1,
+  "num_threads": 0,
+  "num_leaves": 255,
+  "min_data_in_leaf": 200,
+  "lambda_l2": 5.0
+ },
+ "n_rounds": 1091,
+ "blend": [
+  {
+   "w": 0.0,
+   "rmsle": 0.1854795517950132,
+   "folds": [
+    0.19866844785858512,
+    0.17229065573144128
+   ]
+  },
+  {
+   "w": 0.1,
+   "rmsle": 0.18598642310326363,
+   "folds": [
+    0.19896991612302103,
+    0.1730029300835062
+   ]
+  },
+  {
+   "w": 0.2,
+   "rmsle": 0.18763912022390505,
+   "folds": [
+    0.2002090357669202,
+    0.17506920468088988
+   ]
+  },
+  {
+   "w": 0.3,
+   "rmsle": 0.1904055166746395,
+   "folds": [
+    0.20236858357139584,
+    0.17844244977788318
+   ]
+  },
+  {
+   "w": 0.4,
+   "rmsle": 0.194234978911404,
+   "folds": [
+    0.20541953257643597,
+    0.18305042524637208
+   ]
+  }
+ ],
+ "blend_weight": 0.0,
+ "cv_rmsle": 0.1854795517950132,
+ "top_features": {
+  "te_st_dt_h": 5171610.0,
+  "te_st_off_h": 381471.0,
+  "te_st_h": 257718.0,
+  "station_id": 41661.0,
+  "hour": 18102.0,
+  "hours_from_event": 17178.0,
+  "time_idx": 16031.0,
+  "te_st": 13046.0,
+  "is_offday": 11957.0,
+  "temp_c": 7348.0,
+  "vac_all": 7161.0,
+  "event_start_hour": 7109.0,
+  "alight_ratio": 7034.0,
+  "dow": 6546.0,
+  "temp_max_c": 5998.0
+ },
+ "seconds": 1231
+}

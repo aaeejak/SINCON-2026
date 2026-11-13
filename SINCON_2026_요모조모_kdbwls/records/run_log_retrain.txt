@@ -1,0 +1,72 @@
+Python 3.13.18 | pandas 3.0.5 | numpy 2.5.3
+원본 SHA-256 확인, 작업 폴더 준비 완료
+
+[1] 개별 모델 다시 학습 (kdbwls 모델)
+$ python sincon_pipeline_v7.py --mode submit --out v7.csv
+[검증 A] 2025-06-30까지 보고 2025년 7~10월 예측 (같은 계절, 작년 이력 없음)
+  cutoff 2025-06-30 -> 2025-07-01~2025-10-31 (123일, 71역)
+    v0_ot_baseline         RMSLE 0.33680
+    v1_daytype_8w          RMSLE 0.27908
+    v2_lgb_trainlevel      RMSLE 0.23649
+    v3_lgb_recentshift     RMSLE 0.24525
+    v4_blend               RMSLE 0.25513
+    v5_lgb_avg             RMSLE 0.23989
+    v6_final               RMSLE 0.24179
+[검증 B] 2026-02-28까지 보고 2026년 3~6월 예측 (가장 최근, 작년 같은 달 이력 있음)
+  cutoff 2026-02-28 -> 2026-03-01~2026-06-30 (122일, 71역)
+    v0_ot_baseline         RMSLE 0.28935
+    v1_daytype_8w          RMSLE 0.27873
+    v2_lgb_trainlevel      RMSLE 0.17331
+    v3_lgb_recentshift     RMSLE 0.17104
+    v4_blend               RMSLE 0.20886
+    v5_lgb_avg             RMSLE 0.16815
+    v6_final               RMSLE 0.16720
+저장: v7.csv (157194행)
+  (191초)
+  비교 v7.csv vs artifacts/models/v7.csv: 최대 log 차이 0.00e+00 OK
+$ python scripts/run_per_station_final.py ps15
+저장 ps15
+  (105초)
+  비교 model_ps15.csv vs artifacts/models/ps15.csv: 최대 log 차이 0.00e+00 OK
+  비교 ps15_lvl.csv vs artifacts/models/ps15_lvl.csv: 최대 log 차이 1.33e-15 OK
+
+[2] 섞기 원본 OPT5_raw: 저장본 사용 (Public 점수 C 행렬로 계산한 log 가중 평균, README 5절)
+
+[3] 후처리 full_pp (축제 → 명절 0.5 → 공연장·인접역+OKF → 검단 0.5 → SSG 종료)
+$ python scripts/full_pp.py OPT5_raw.csv OPT5_pp.csv
+저장 OPT5_pp.csv
+  (5초)
+  비교 OPT5_pp.csv vs artifacts/blend_chain/OPT5_pp.csv: 최대 log 차이 0.00e+00 OK
+
+[4] 팀 섞기 0.5/0.5 (log1p 공간)
+  비교 OPT5pp_team50.csv vs artifacts/blend_chain/OPT5pp_team50.csv: 최대 log 차이 0.00e+00 OK
+
+[5] SSG·OKF 보정 세기 복원: 저장본 사용 (README 5절)
+
+[6] 취소 행사 반영 (OKF 9/26~27, GHOSTIVAL 10/24~25)
+$ python scripts/cancel_adjust.py OPT5pp_team50_fix.csv OPT5pp_team50_fix_cancel.csv 1.0
+저장 OPT5pp_team50_fix_cancel.csv
+  (1초)
+  비교 OPT5pp_team50_fix_cancel.csv vs artifacts/blend_chain/OPT5pp_team50_fix_cancel.csv: 최대 log 차이 0.00e+00 OK
+
+[7] 검바위(3208) 시험 기간 보정 (nayun 코드)
+$ python code/exam_adjust.py OPT5pp_team50_fix_cancel.csv step_exam.csv 0.6
+보정 행 9, 저장 step_exam.csv
+  (1초)
+$ python code/geombawi_adjust.py step_exam.csv final_A.csv hours h1516
+보정 행 34, 저장 final_A.csv
+  (2초)
+  비교 final_A.csv vs predictions/final_A_fixcancel_geombawi.csv: 최대 log 차이 8.88e-16 OK
+Traceback (most recent call last):
+  File "/tmp/pkgA/SINCON_2026_요모조모_kdbwls/code/run_all.py", line 140, in <module>
+    main()
+    ~~~~^^
+  File "/tmp/pkgA/SINCON_2026_요모조모_kdbwls/code/run_all.py", line 133, in main
+    check_format(W / "final_A.csv")
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/tmp/pkgA/SINCON_2026_요모조모_kdbwls/code/run_all.py", line 82, in check_format
+    assert list(s.columns) == ["example_id", "boardings"] and len(s) == 157194 == len(ss)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+# [메모] 위 마지막 오류는 형식 검사가 옛 117,576행 sample_submission과 비교해서 난 것. 모든 단계 비교는 OK였고, test.csv ID로 검사하도록 고친 뒤 records/run_log.txt에서 '재현 성공' 확인.

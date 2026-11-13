@@ -1,0 +1,8 @@
+pandas==3.0.5
+numpy==2.5.3
+lightgbm==4.7.0
+scipy==1.18.1
+# new_v5 모델(code/feat_v5a_package.zip) 재학습 시 추가
+# scikit-learn==1.9.1
+# pyarrow==26.0.1
+# catboost
